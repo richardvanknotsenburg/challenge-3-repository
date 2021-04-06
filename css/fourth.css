@@ -1,0 +1,8 @@
+@media only screen and (min-width: 1440px){
+	body{
+		background-image: url('../img/lastone.jpg');
+		background-repeat: no-repeat;
+		background-size: 100%;
+
+	}
+}

@@ -1,0 +1,22 @@
+@media only screen and (min-width: 940px){
+	
+	body{
+		background-image: url('../img/someone.jpg');
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+
+	.hidden{
+		display: none;
+	}
+
+	.fixedWeather{
+		top: 80%;
+		left: 10%;
+		width: 340px;
+		height: 120px;
+		font-size: 20px;
+	}
+
+
+}
