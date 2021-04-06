@@ -50,9 +50,25 @@ inputs[i].onclick = switchLayer;
 }
 
 
+var searchbar = document.querySelector('.mapboxgl-ctrl-geocoder--input');
+searchbar.addEventListener('change', getSearchResult)
+
+//Variabelen voor de functie getSearchResults
+var searchTerm;
+var searchCountry;
+
+
+function getSearchResult(e) {
+    searchTerm = e.target.value
+    var searchArray = searchTerm.split(', ');
+    searchCountry = searchArray[searchArray.length - 1];
+    getAPIdata();
+}
+
 //kijken of je je bondjas aan moet houden.
 function getAPIdata() {
 
+var country = searchCountry ? searchCountry : 'Netherlands';
 	// construct request
 	var request = 'https://api.openweathermap.org/data/2.5/weather?appid=35df706845e78503b65cd04f528ab9e8&q=the%20Hague,nl';
 
@@ -67,6 +83,8 @@ function getAPIdata() {
 	// do something with response
 	.then(function(response) {
 		
+		var country = document.getElementById("country").innerHTML = response[0].name;
+
 		var weatherBox = document.getElementById('weather');
 		 var graden = Math.floor(response.main.temp - 273.15);
 		 weatherBox.innerHTML = graden + '&#176;C';
@@ -76,3 +94,10 @@ function getAPIdata() {
 // init data stream
 getAPIdata();
 
+
+
+
+//om de map gelijk de goede schaal mee te geven (tip van Fedor)
+map.on('load', function () {
+    map.resize();
+});
